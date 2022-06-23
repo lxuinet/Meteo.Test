@@ -26,13 +26,13 @@ namespace Meteo.Views
             var temperature = addTextItem(this, $"{roundValue(interval.temperature?.value)}°");
             temperature.Font = Font.H3;
             temperature.PaddingLeft = 16;
-            var temperatureIcon = temperature.Add(Image.LoadIcon(24, 0xEB7F), Alignment.LeftCenter);
+            var temperatureIcon = temperature.Add(Image.LoadFromFont("Icons.ttf", 24, 0xEB7F), Alignment.LeftCenter);
             temperatureIcon.Enabled = false;
             temperatureIcon.Size = new SizeF(32, 48);
 
             var wind = addTextItem(this, "-");
             wind.PaddingLeft = 16;
-            var windIcon = wind.Add(Image.LoadIcon(18, (ushort)(0xEC56)), Alignment.LeftCenter);
+            var windIcon = wind.Add(Image.LoadFromFont("Icons.ttf", 18, (ushort)(0xEC56)), Alignment.LeftCenter);
             windIcon.Size = new SizeF(32, 48);
             if (interval.wind?.speed != null)
             {
@@ -40,7 +40,7 @@ namespace Meteo.Views
                 wind.Text = $"{roundValue(speed)} m/s";
                 if (interval.wind?.direction != null && speed > 0)
                 {
-                    windIcon.Image = Image.LoadIcon(18, (ushort)(0xEDF1));
+                    windIcon.Image = Image.LoadFromFont("Icons.ttf", 18, (ushort)(0xEDF1));
                     windIcon.ImageColor = speed > 15 ? Color.Red : speed > 5 ? Color.Orange : Color.Content;
                     windIcon.Rotation = interval.wind.direction.Value;
                 }
@@ -49,7 +49,7 @@ namespace Meteo.Views
             var precipitation = addTextItem(this, "-");
             precipitation.PaddingLeft = 16;
             precipitation.Enabled = false;
-            var precipitationIcon = precipitation.Add(Image.LoadIcon(18, 0xE9B6), Alignment.LeftCenter);
+            var precipitationIcon = precipitation.Add(Image.LoadFromFont("Icons.ttf", 18, 0xE9B6), Alignment.LeftCenter);
             precipitationIcon.ImageColor = new Color(32, 112, 216);
             precipitationIcon.Size = new SizeF(32, 48);
             if (interval.precipitation?.value != null && interval.precipitation.value > 0)

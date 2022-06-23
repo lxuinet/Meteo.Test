@@ -15,17 +15,17 @@ namespace Meteo.Views
 
         public LocationItem(Location location = null)
         {
+            Layout = new VerticalList();
+            AutoHeight = true;
+            Padding = 8;
             bool isLarge = location == null;
 
-            SetPadding(8, 4, 8, 0);
-            Height = isLarge ? 108 : 64;
-
             Icon = isLarge
-                //? Image.LoadFromFont("Icons.ttf", 64, (ushort)(0xE964))
                 ? Image.LoadFromResource("*.yrno.png")
                 : Image.LoadFromFont("Icons.ttf", 24, (ushort)(0xEAF8));
-            Icon.Alignment = Alignment.LeftCenter;
+            Icon.Alignment = Alignment.LeftCenter | Alignment.NotLayouted;
             Icon.Size = isLarge ? 96 : 24;
+            Icon.Left = 8;
             Icon.ImageColor = isLarge ? Color.White : Color.Content.Alpha(150);
             Icon.AddTo(this);
 
@@ -35,26 +35,24 @@ namespace Meteo.Views
             name.AutoHeight = true;
             name.AutoWidth = false;
             name.Trimming = true;
-            name.TextPaddingLeft = 0;
+            name.TextPadding = 0;
             name.Font = isLarge ? Font.H1 : Font.H3;
             name.TextAlignment = Alignment.LeftCenter;
-            name.Left = isLarge ? 108 : 32;
-            name.Top = isLarge ? 8 : 0;
+            name.Left = isLarge ? 116 : 32;
             name.UserMouse = isLarge ? UserMode.On : UserMode.None;
             name.AddTo(this);
 
             info = new ScrollableLabel();
             info.Text = "Norwegian Meteorological Institute and NRK";
-            info.Alignment = Alignment.BottomFill;
+            info.Alignment = Alignment.TopFill;
             info.AutoHeight = true;
             info.AutoWidth = false;
             info.Trimming = true;
-            info.TextPaddingLeft = 0;
+            info.TextPadding = 0;
             info.TextColor = Color.Content.Alpha(150);
             info.Font = isLarge ? Font.H3 : Font.Body;
             info.TextAlignment = Alignment.LeftCenter;
-            info.Left = isLarge ? 108 : 32;
-            info.Bottom = isLarge ? 8 : 0;
+            info.Left = isLarge ? 116 : 32;
             info.UserMouse = isLarge ? UserMode.On : UserMode.None;
             info.AddTo(this);
 

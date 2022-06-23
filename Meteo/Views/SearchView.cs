@@ -77,7 +77,6 @@ namespace Meteo.Views
         {
             if (searchText.Focused)
             {
-                //Transparency = 255;
                 Ranges.MaximumWidth = double.MaxValue;
                 clearButton.Visible = true;
                 searchText.Visible = true;

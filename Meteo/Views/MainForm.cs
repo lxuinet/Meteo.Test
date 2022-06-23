@@ -76,9 +76,6 @@ namespace Meteo.Views
 
         public MainForm()
         {
-
-            //Window.Scale = Scale.Percent75;
-
             Window.Title = "Norwegian Meteorological Institute and NRK";
 
 
@@ -89,9 +86,6 @@ namespace Meteo.Views
 
             StartHotKey(Key.Escape).Press += delegate { LX.App.Exit(); return true; };
             StartHotKey(Key.BrowserBack).Press += delegate { LX.App.Exit(); return true; };
-
-
-
 
             AddToRoot();
             CanFocus = true;
@@ -134,7 +128,8 @@ namespace Meteo.Views
             theme.AutoSize = true;
             theme.AddTo(header, Alignment.TopLeft);
 
-            var themeIcon = theme.Add(Image.LoadIcon(24, 0xEB7A), Alignment.LeftCenter);
+            var themeIcon = theme.Add(Image.LoadFromFont("Icons.ttf", 24, 0xEB7A), Alignment.LeftCenter);
+            themeIcon.AutoSize = true;
             themeIcon.ImageColor = Color.Secondary;
 
             var themeText = theme.Add("Theme:", Alignment.LeftCenter);
@@ -155,20 +150,6 @@ namespace Meteo.Views
             themeToggle.ContentStyle = ColorStyle.Normal | ColorStyle.Disabled;
             themeToggle.AddTo(theme, Alignment.LeftCenter);
 
-            /*var themeToggle2 = new Slider();
-            themeToggle2.Scroller.ContentStyle = ColorStyle.Normal | ColorStyle.Disabled;
-            //themeToggle2.Enabled = false;
-            themeToggle2.Orientation = SliderOrientation.HorizontalStep;
-            themeToggle2.Maximum = 1;
-            themeToggle2.Width = 72;
-            themeToggle2.AddTo(theme, Alignment.LeftCenter);
-            themeToggle2.OnClick += delegate { themeToggle2.Scroller.Click(); };
-            themeToggle2.Scroller.OnClick += delegate
-            {
-                themeToggle2.Value = themeToggle2.Value == themeToggle2.Maximum ? themeToggle2.Minimum : themeToggle2.Maximum;
-                themeToggle2.Checked = themeToggle2.Value == themeToggle2.Maximum;
-            };*/
-
             var themeBlack = theme.Add("Black", Alignment.LeftCenter);
             themeBlack.TextColor = Color.Secondary;
             themeBlack.Enabled = false;
@@ -178,7 +159,7 @@ namespace Meteo.Views
             {
                 themeWhite.Enabled = !themeToggle.Checked;
                 themeBlack.Enabled = themeToggle.Checked;
-                themeIcon.Image = themeToggle.Checked ? Image.LoadIcon(24, 0xEC82) : Image.LoadIcon(24, 0xEB7A);
+                themeIcon.Image = themeToggle.Checked ? Image.LoadFromFont("Icons.ttf", 24, 0xEC82) : Image.LoadFromFont("Icons.ttf", 24, 0xEB7A);
                 Window.Skin = !themeToggle.Checked ? whiteSkin : blackSkin;
                 App.Configuration["ThemeToggle"] = themeToggle.Checked;
                 App.Configuration.Save();
